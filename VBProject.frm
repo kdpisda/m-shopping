@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin VB.Form WelcomeForm 
    Caption         =   "Login to m-Shopping"
-   ClientHeight    =   6240
+   ClientHeight    =   6120
    ClientLeft      =   225
    ClientTop       =   570
-   ClientWidth     =   10860
+   ClientWidth     =   10770
    LinkTopic       =   "Form1"
-   ScaleHeight     =   6240
-   ScaleWidth      =   10860
+   ScaleHeight     =   6120
+   ScaleWidth      =   10770
    StartUpPosition =   3  'Windows Default
    Begin VB.PictureBox Picture1 
       Height          =   6375
@@ -18,6 +18,14 @@ Begin VB.Form WelcomeForm
       TabIndex        =   9
       Top             =   0
       Width           =   4335
+      Begin VB.CommandButton Admin 
+         Caption         =   "Admin Login"
+         Height          =   495
+         Left            =   840
+         TabIndex        =   10
+         Top             =   5400
+         Width           =   2415
+      End
    End
    Begin VB.CommandButton RegisterButton 
       Caption         =   "Register"
@@ -57,7 +65,7 @@ Begin VB.Form WelcomeForm
       Alignment       =   2  'Center
       BeginProperty Font 
          Name            =   "Trebuchet MS"
-         Size            =   15.75
+         Size            =   18
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -76,7 +84,7 @@ Begin VB.Form WelcomeForm
       Alignment       =   2  'Center
       BeginProperty Font 
          Name            =   "Trebuchet MS"
-         Size            =   15.75
+         Size            =   18
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -191,12 +199,37 @@ Attribute VB_Exposed = False
 Dim db As ADODB.Connection
 Dim records As ADODB.Recordset
 Dim rec_ary As Variant
+Dim username As String
+Dim password As String
+
+Private Sub Admin_Click()
+    frmLogin.Show
+End Sub
 
 Private Sub LoginButton_Click()
-    Set db = New ADODB.Connection
-    db.Open "PROVIDER=Microsoft.Jet.OLEDB.4.0; Data Source=" & App.Path + "\mshopping.mdb"
-    Set records = New ADODB.Recordset
-    records.Open "Select * from users", db, adOpenStatic, adLockOptimistic
-    rec_ary = records.GetRows(1)
-    MsgBox (rec_ary(0, 0))
+    LoadingSplash.Show
+    If LoadingSplash.Visible Then
+        Set db = New ADODB.Connection
+        db.Open "PROVIDER=Microsoft.Jet.OLEDB.4.0; Data Source=" & App.Path + "\mshopping.mdb"
+        Set records = New ADODB.Recordset
+        records.Open "Select count(*) from [users] where username = '" + username + "' and password = '" + password & "';", db, adOpenStatic, adLockOptimistic
+        rec_ary = records.GetRows(1)
+        If rec_ary = 1 Then
+            SampleForm.Show
+            Unload Me
+        Else
+            LoadingSplash.Hide
+        End If
+    End If
+    LoadingSplash.Hide
+    Unload Me
 End Sub
+
+Private Sub PasswordTextBox_Change()
+    password = PasswordTextBox.Text
+End Sub
+
+Private Sub UsernameTextBox_Change()
+    username = UsernameTextBox.Text
+End Sub
+

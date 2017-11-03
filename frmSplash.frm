@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "COMCTL32.OCX"
-Begin VB.Form frmSplash 
+Begin VB.Form WelcomeSplash 
    BorderStyle     =   3  'Fixed Dialog
    ClientHeight    =   5580
    ClientLeft      =   255
@@ -23,13 +23,18 @@ Begin VB.Form frmSplash
       TabIndex        =   0
       Top             =   120
       Width           =   12225
-      Begin ComctlLib.ProgressBar ProgressBar1 
+      Begin VB.Timer ProgressBarTimer 
+         Interval        =   100
+         Left            =   11400
+         Top             =   2400
+      End
+      Begin ComctlLib.ProgressBar LoadingProgressBar 
          Height          =   495
          Left            =   6960
          TabIndex        =   7
          Top             =   4560
-         Width           =   4935
-         _ExtentX        =   8705
+         Width           =   4815
+         _ExtentX        =   8493
          _ExtentY        =   873
          _Version        =   327682
          Appearance      =   1
@@ -40,7 +45,7 @@ Begin VB.Form frmSplash
          Left            =   6960
          TabIndex        =   4
          Top             =   3000
-         Width           =   4935
+         Width           =   4815
          Begin VB.Label Label1 
             Caption         =   "Kuldeep Pisda, Bhavna Sahu, Prince Jain, Shanmukha"
             BeginProperty Font 
@@ -124,12 +129,11 @@ Begin VB.Form frmSplash
       End
    End
 End
-Attribute VB_Name = "frmSplash"
+Attribute VB_Name = "WelcomeSplash"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
 Option Explicit
 
 Private Sub Form_KeyPress(KeyAscii As Integer)
@@ -139,8 +143,18 @@ End Sub
 Private Sub Form_Load()
     'lblVersion.Caption = "Version " & App.Major & "." & App.Minor & "." & App.Revision
     'lblProductName.Caption = App.Title
+    
 End Sub
 
 Private Sub Frame1_Click()
     Unload Me
+End Sub
+
+Private Sub ProgressBarTimer_Timer()
+    ProgressBarTimer.Interval = Rnd * 300 + 10
+    LoadingProgressBar.Value = LoadingProgressBar.Value + 2
+    If LoadingProgressBar.Value = 100 Then
+        WelcomeForm.Show
+    Unload Me
+    End If
 End Sub
