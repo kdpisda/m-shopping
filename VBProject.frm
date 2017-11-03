@@ -214,7 +214,7 @@ Private Sub LoginButton_Click()
         Set records = New ADODB.Recordset
         records.Open "Select count(*) from [users] where username = '" + username + "' and password = '" + password & "';", db, adOpenStatic, adLockOptimistic
         rec_ary = records.GetRows(1)
-        If rec_ary = 1 Then
+        If rec_ary(0, 0) = 1 Then
             SampleForm.Show
             Unload Me
         Else
