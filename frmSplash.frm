@@ -8,6 +8,7 @@ Begin VB.Form WelcomeSplash
    ClientWidth     =   12540
    ClipControls    =   0   'False
    ControlBox      =   0   'False
+   FillColor       =   &H00FFFFFF&
    Icon            =   "frmSplash.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
@@ -32,6 +33,7 @@ Begin VB.Form WelcomeSplash
          Height          =   495
          Left            =   6960
          TabIndex        =   7
+         ToolTipText     =   "Loading Please Wait..."
          Top             =   4560
          Width           =   4815
          _ExtentX        =   8493
@@ -150,11 +152,12 @@ Private Sub Frame1_Click()
     Unload Me
 End Sub
 
+
 Private Sub ProgressBarTimer_Timer()
     ProgressBarTimer.Interval = Rnd * 300 + 10
-    LoadingProgressBar.Value = LoadingProgressBar.Value + 2
-    If LoadingProgressBar.Value = 100 Then
+    LoadingProgressBar.Value = LoadingProgressBar.Value + 3
+    If LoadingProgressBar.Value = 99 Then
         WelcomeForm.Show
-    Unload Me
+        Unload Me
     End If
 End Sub

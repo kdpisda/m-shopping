@@ -1,11 +1,14 @@
 VERSION 5.00
 Begin VB.Form WelcomeForm 
+   Appearance      =   0  'Flat
+   BackColor       =   &H80000005&
    Caption         =   "Login to m-Shopping"
    ClientHeight    =   6120
    ClientLeft      =   225
    ClientTop       =   570
    ClientWidth     =   10770
    LinkTopic       =   "Form1"
+   MaxButton       =   0   'False
    ScaleHeight     =   6120
    ScaleWidth      =   10770
    StartUpPosition =   3  'Windows Default
@@ -18,16 +21,9 @@ Begin VB.Form WelcomeForm
       TabIndex        =   9
       Top             =   0
       Width           =   4335
-      Begin VB.CommandButton Admin 
-         Caption         =   "Admin Login"
-         Height          =   495
-         Left            =   840
-         TabIndex        =   10
-         Top             =   5400
-         Width           =   2415
-      End
    End
    Begin VB.CommandButton RegisterButton 
+      BackColor       =   &H8000000B&
       Caption         =   "Register"
       BeginProperty Font 
          Name            =   "Trebuchet MS"
@@ -40,11 +36,14 @@ Begin VB.Form WelcomeForm
       EndProperty
       Height          =   615
       Left            =   4560
-      TabIndex        =   6
+      MaskColor       =   &H00FFFFFF&
+      Style           =   1  'Graphical
+      TabIndex        =   4
       Top             =   4440
       Width           =   5895
    End
    Begin VB.CommandButton LoginButton 
+      BackColor       =   &H8000000B&
       Caption         =   "Login"
       BeginProperty Font 
          Name            =   "Trebuchet MS"
@@ -57,8 +56,10 @@ Begin VB.Form WelcomeForm
       EndProperty
       Height          =   615
       Left            =   4560
-      TabIndex        =   5
-      Top             =   3000
+      MaskColor       =   &H00FFFFFF&
+      Style           =   1  'Graphical
+      TabIndex        =   3
+      Top             =   3120
       Width           =   5895
    End
    Begin VB.TextBox PasswordTextBox 
@@ -72,12 +73,12 @@ Begin VB.Form WelcomeForm
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   645
+      Height          =   525
       IMEMode         =   3  'DISABLE
       Left            =   6360
       PasswordChar    =   "*"
-      TabIndex        =   4
-      Top             =   2160
+      TabIndex        =   1
+      Top             =   2280
       Width           =   4215
    End
    Begin VB.TextBox UsernameTextBox 
@@ -91,14 +92,15 @@ Begin VB.Form WelcomeForm
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   645
+      Height          =   525
       Left            =   6360
-      TabIndex        =   2
-      Top             =   1320
+      TabIndex        =   0
+      Top             =   1440
       Width           =   4215
    End
    Begin VB.Label Heading 
       Alignment       =   2  'Center
+      BackStyle       =   0  'Transparent
       Caption         =   "m-Shopping"
       BeginProperty Font 
          Name            =   "Trebuchet MS"
@@ -109,9 +111,10 @@ Begin VB.Form WelcomeForm
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H80000007&
       Height          =   735
       Left            =   4560
-      TabIndex        =   0
+      TabIndex        =   2
       Top             =   240
       Width           =   5895
    End
@@ -151,11 +154,12 @@ Begin VB.Form WelcomeForm
       Height          =   375
       Left            =   6480
       TabIndex        =   7
-      Top             =   3840
+      Top             =   3960
       Width           =   1815
    End
    Begin VB.Label PasswordLabel 
       Alignment       =   2  'Center
+      BackStyle       =   0  'Transparent
       Caption         =   "Password"
       BeginProperty Font 
          Name            =   "Trebuchet MS"
@@ -168,12 +172,13 @@ Begin VB.Form WelcomeForm
       EndProperty
       Height          =   375
       Left            =   4560
-      TabIndex        =   3
+      TabIndex        =   6
       Top             =   2280
       Width           =   1695
    End
    Begin VB.Label UsernameLaabel 
       Alignment       =   2  'Center
+      BackStyle       =   0  'Transparent
       Caption         =   "Username"
       BeginProperty Font 
          Name            =   "Trebuchet MS"
@@ -186,7 +191,7 @@ Begin VB.Form WelcomeForm
       EndProperty
       Height          =   375
       Left            =   4560
-      TabIndex        =   1
+      TabIndex        =   5
       Top             =   1440
       Width           =   1695
    End
@@ -206,6 +211,8 @@ Private Sub Admin_Click()
     frmLogin.Show
 End Sub
 
+LoginButton.ForeColor = vbWhite
+
 Private Sub LoginButton_Click()
     LoadingSplash.Show
     If LoadingSplash.Visible Then
@@ -215,18 +222,27 @@ Private Sub LoginButton_Click()
         records.Open "Select count(*) from [users] where username = '" + username + "' and password = '" + password & "';", db, adOpenStatic, adLockOptimistic
         rec_ary = records.GetRows(1)
         If rec_ary(0, 0) = 1 Then
-            SampleForm.Show
+            Set records = New ADODB.Recordset
+            records.Open "Select user_type from [users] where username = '" + username + "' and password = '" + password & "';", db, adOpenStatic, adLockOptimistic
+            rec_ary = records.GetRows(1)
+            If rec_ary(0, 0) = "admin" Then
+                AdminPanelForm.Show
+            Else
+                UserPanelForm.Show
+            End If
             Unload Me
         Else
             LoadingSplash.Hide
+            MsgBox ("Wrong username and password combination")
         End If
     End If
     LoadingSplash.Hide
-    Unload Me
+    'Unload Me
 End Sub
 
 Private Sub PasswordTextBox_Change()
     password = PasswordTextBox.Text
+    'If username = ""
 End Sub
 
 Private Sub UsernameTextBox_Change()
