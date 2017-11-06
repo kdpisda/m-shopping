@@ -1,0 +1,4 @@
+Line 17: Class MSDataGridLib.DataGrid of control MobilesDataGrid was not a loaded control class.
+Line 84: Class MSDataGridLib.DataGrid of control UsersDataGrid was not a loaded control class.
+Line 151: Class MSAdodcLib.Adodc of control MobilesDataControl was not a loaded control class.
+Line 197: Class MSAdodcLib.Adodc of control UsersDataControl was not a loaded control class.
