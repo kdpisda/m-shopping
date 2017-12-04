@@ -14,20 +14,48 @@ Begin VB.Form OrderForm
    ScaleHeight     =   8670
    ScaleWidth      =   8895
    StartUpPosition =   3  'Windows Default
+   Begin VB.TextBox MobileQuantity 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   6960
+      TabIndex        =   14
+      Text            =   "00"
+      Top             =   6000
+      Width           =   1095
+   End
+   Begin VB.TextBox SelectedMobileIdHidden 
+      Height          =   285
+      Left            =   7560
+      TabIndex        =   12
+      Text            =   "Text1"
+      Top             =   1920
+      Visible         =   0   'False
+      Width           =   735
+   End
    Begin VB.TextBox UserNameHidden 
       Height          =   285
       Left            =   5280
-      TabIndex        =   13
+      TabIndex        =   11
       Text            =   "Text1"
       Top             =   1920
+      Visible         =   0   'False
       Width           =   975
    End
    Begin VB.TextBox UserIdHidden 
       Height          =   285
       Left            =   6600
-      TabIndex        =   12
+      TabIndex        =   10
       Text            =   "Text1"
       Top             =   1920
+      Visible         =   0   'False
       Width           =   615
    End
    Begin VB.CommandButton BackButtonOrderSelect 
@@ -48,27 +76,10 @@ Begin VB.Form OrderForm
       MousePointer    =   99  'Custom
       Picture         =   "OrderForm.frx":DA99
       Style           =   1  'Graphical
-      TabIndex        =   9
+      TabIndex        =   8
       ToolTipText     =   "Cancel"
       Top             =   7200
       Width           =   1215
-   End
-   Begin VB.PictureBox MobileImageSelect 
-      Height          =   5895
-      Left            =   600
-      Picture         =   "OrderForm.frx":EE9B
-      ScaleHeight     =   5835
-      ScaleWidth      =   4035
-      TabIndex        =   0
-      Top             =   2400
-      Width           =   4095
-      Begin VB.Shape Shape1 
-         FillColor       =   &H000000C0&
-         Height          =   735
-         Left            =   6480
-         Top             =   0
-         Width           =   15
-      End
    End
    Begin VB.CommandButton SubmitImageButton 
       BackColor       =   &H00FFFFFF&
@@ -84,14 +95,41 @@ Begin VB.Form OrderForm
       Height          =   1095
       Left            =   6840
       MaskColor       =   &H000080FF&
-      MouseIcon       =   "OrderForm.frx":2C2ED
+      MouseIcon       =   "OrderForm.frx":EE9B
       MousePointer    =   99  'Custom
-      Picture         =   "OrderForm.frx":2C43F
+      Picture         =   "OrderForm.frx":EFED
       Style           =   1  'Graphical
-      TabIndex        =   6
+      TabIndex        =   5
       ToolTipText     =   "Confirm Order"
       Top             =   7200
       Width           =   1215
+   End
+   Begin VB.Image MobileImageSelect 
+      Height          =   5775
+      Left            =   840
+      Picture         =   "OrderForm.frx":103EF
+      Stretch         =   -1  'True
+      Top             =   2520
+      Width           =   3495
+   End
+   Begin VB.Label Label2 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Enter Quantity:"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H8000000E&
+      Height          =   495
+      Left            =   4920
+      TabIndex        =   13
+      Top             =   6000
+      Width           =   2055
    End
    Begin VB.Label GreetLabel 
       BackStyle       =   0  'Transparent
@@ -108,7 +146,7 @@ Begin VB.Form OrderForm
       ForeColor       =   &H8000000E&
       Height          =   255
       Left            =   240
-      TabIndex        =   11
+      TabIndex        =   9
       Top             =   1320
       Width           =   6375
    End
@@ -119,15 +157,6 @@ Begin VB.Form OrderForm
       Left            =   -120
       Top             =   1200
       Width           =   9135
-   End
-   Begin VB.Label MobileIdCaption 
-      Caption         =   "id"
-      Height          =   375
-      Left            =   8400
-      TabIndex        =   10
-      Top             =   1920
-      Visible         =   0   'False
-      Width           =   375
    End
    Begin VB.Label MobileModelName 
       BackStyle       =   0  'Transparent
@@ -144,7 +173,7 @@ Begin VB.Form OrderForm
       ForeColor       =   &H8000000E&
       Height          =   495
       Left            =   4920
-      TabIndex        =   8
+      TabIndex        =   7
       Top             =   3000
       Width           =   4695
    End
@@ -162,7 +191,7 @@ Begin VB.Form OrderForm
       EndProperty
       Height          =   855
       Left            =   1080
-      TabIndex        =   7
+      TabIndex        =   6
       Top             =   240
       Width           =   3735
    End
@@ -212,7 +241,7 @@ Begin VB.Form OrderForm
       ForeColor       =   &H8000000E&
       Height          =   495
       Left            =   4920
-      TabIndex        =   5
+      TabIndex        =   4
       Top             =   4680
       Width           =   1335
    End
@@ -232,7 +261,7 @@ Begin VB.Form OrderForm
       ForeColor       =   &H8000000E&
       Height          =   495
       Left            =   6600
-      TabIndex        =   4
+      TabIndex        =   3
       Top             =   4680
       Width           =   1935
    End
@@ -252,7 +281,7 @@ Begin VB.Form OrderForm
       ForeColor       =   &H8000000E&
       Height          =   495
       Left            =   4920
-      TabIndex        =   3
+      TabIndex        =   2
       Top             =   5160
       Width           =   1575
    End
@@ -272,7 +301,7 @@ Begin VB.Form OrderForm
       ForeColor       =   &H8000000E&
       Height          =   1095
       Left            =   4920
-      TabIndex        =   2
+      TabIndex        =   1
       Top             =   3480
       Width           =   3735
    End
@@ -292,7 +321,7 @@ Begin VB.Form OrderForm
       ForeColor       =   &H8000000E&
       Height          =   615
       Left            =   4920
-      TabIndex        =   1
+      TabIndex        =   0
       Top             =   2400
       Width           =   4575
    End
@@ -336,7 +365,8 @@ End Sub
 Private Sub Form_Load()
     Dim MobileId As Integer
     MobileId = UserPanelForm.SelectMobileId
-    MobileIdCaption.Caption = MobileId
+    SelectedMobileIdHidden.Text = MobileId
+    GreetLabel.Caption = "Welcome " & UserNameHidden.Text
     Set db = New ADODB.Connection
     db.Open "PROVIDER=Microsoft.Jet.OLEDB.4.0; Data Source=" & App.Path + "\mshopping.mdb"
     Set records = New ADODB.Recordset
@@ -357,16 +387,32 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub HomeImageButton_Click()
+    UserPanelForm.UserIdHidden.Text = UserIdHidden.Text
+    UserPanelForm.UserNameHidden.Text = UserNameHidden.Text
     UserPanelForm.Show
     Unload Me
 End Sub
 
 
-Private Sub MobileImageSelect_Click()
-
-End Sub
-
 Private Sub SubmitImageButton_Click()
-    DetailsForm.Show
-    Unload Me
+    If MobileQuantity.Text > 0 And MobileQuantity.Text < 21 Then
+        DetailsForm.Show
+        DetailsForm.SelectedMobileNameLabel.Caption = mobilename.Caption
+        DetailsForm.SelectedMobilePriceLabel.Caption = (MobilePrice.Caption * MobileQuantity.Text) & " Rs"
+        If MobileQuantity.Text = 1 Then
+            DetailsForm.QuantityLabel.Caption = MobileQuantity.Text & " Pc"
+        Else
+            DetailsForm.QuantityLabel.Caption = MobileQuantity.Text & " Pcs"
+        End If
+        DetailsForm.SelectedMobileImage.Picture = MobileImageSelect.Picture
+        DetailsForm.SelectedMobileImage.Width = 855
+        DetailsForm.SelectedMobileImage.Height = 855
+        DetailsForm.QuantityHidden.Text = MobileQuantity.Text
+        DetailsForm.SelectedMobileIdHidden.Text = SelectedMobileIdHidden.Text
+        DetailsForm.UserIdHidden.Text = UserIdHidden.Text
+        DetailsForm.UserNameHidden.Text = UserNameHidden.Text
+        Unload Me
+    Else
+        MsgBox ("You can enter quantity in range of 1 - 20 both inclusive")
+    End If
 End Sub

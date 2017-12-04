@@ -2,15 +2,16 @@ VERSION 5.00
 Begin VB.Form UserPanelForm 
    Caption         =   "Select Mobiles"
    ClientHeight    =   7455
-   ClientLeft      =   120
-   ClientTop       =   465
-   ClientWidth     =   13635
+   ClientLeft      =   225
+   ClientTop       =   570
+   ClientWidth     =   13665
    FillColor       =   &H00FFFFFF&
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    ScaleHeight     =   7455
-   ScaleWidth      =   13635
+   ScaleWidth      =   13665
    StartUpPosition =   3  'Windows Default
+   Visible         =   0   'False
    Begin VB.TextBox UserNameHidden 
       Height          =   285
       Left            =   11040
@@ -90,7 +91,7 @@ Begin VB.Form UserPanelForm
    End
    Begin VB.Image Image1 
       Height          =   7500
-      Left            =   -240
+      Left            =   -480
       Picture         =   "UserPanelForm.frx":0000
       Top             =   0
       Width           =   7500
@@ -174,7 +175,7 @@ Dim MobileImage As String
 
 Private Sub Form_Load()
     username = WelcomeForm.UsernameTextBox
-    UserNameLabel.Caption = "Welcome, " + username
+    UserNameLabel.Caption = "Welcome, " + UserNameHidden.Text
     LoadingSplash.Show
     If LoadingSplash.Visible Then
         Set db = New ADODB.Connection
