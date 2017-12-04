@@ -91,7 +91,7 @@ Begin VB.Form BillingForm
       Top             =   5520
       Width           =   2775
    End
-   Begin VB.Label Label3 
+   Begin VB.Label BillingMobilePrice 
       BackStyle       =   0  'Transparent
       Caption         =   "RS"
       BeginProperty Font 
@@ -186,7 +186,7 @@ Begin VB.Form BillingForm
       Top             =   4800
       Width           =   3255
    End
-   Begin VB.Label Label8 
+   Begin VB.Label BillingMobileName 
       BackStyle       =   0  'Transparent
       Caption         =   "NAME"
       BeginProperty Font 
@@ -205,7 +205,7 @@ Begin VB.Form BillingForm
       Top             =   3960
       Width           =   3255
    End
-   Begin VB.Label Label7 
+   Begin VB.Label labelx 
       BackStyle       =   0  'Transparent
       Caption         =   "MOBILE"
       BeginProperty Font 
@@ -250,8 +250,8 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub Command1_Click()
-BILLING.Hide
-DETAILS.Show
+BillingForm.Hide
+DetailsForm.Show
 End Sub
 
 Private Sub Command2_Click()

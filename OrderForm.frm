@@ -2,18 +2,34 @@ VERSION 5.00
 Begin VB.Form OrderForm 
    BackColor       =   &H00008080&
    Caption         =   "Order"
-   ClientHeight    =   6810
+   ClientHeight    =   8670
    ClientLeft      =   120
    ClientTop       =   465
-   ClientWidth     =   9045
+   ClientWidth     =   8895
    FillColor       =   &H0000C0C0&
    ForeColor       =   &H8000000D&
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    Picture         =   "OrderForm.frx":0000
-   ScaleHeight     =   6810
-   ScaleWidth      =   9045
+   ScaleHeight     =   8670
+   ScaleWidth      =   8895
    StartUpPosition =   3  'Windows Default
+   Begin VB.TextBox UserNameHidden 
+      Height          =   285
+      Left            =   5280
+      TabIndex        =   13
+      Text            =   "Text1"
+      Top             =   1920
+      Width           =   975
+   End
+   Begin VB.TextBox UserIdHidden 
+      Height          =   285
+      Left            =   6600
+      TabIndex        =   12
+      Text            =   "Text1"
+      Top             =   1920
+      Width           =   615
+   End
    Begin VB.CommandButton BackButtonOrderSelect 
       BackColor       =   &H00FFFFFF&
       BeginProperty Font 
@@ -34,17 +50,17 @@ Begin VB.Form OrderForm
       Style           =   1  'Graphical
       TabIndex        =   9
       ToolTipText     =   "Cancel"
-      Top             =   5400
+      Top             =   7200
       Width           =   1215
    End
    Begin VB.PictureBox MobileImageSelect 
-      Height          =   4695
+      Height          =   5895
       Left            =   600
       Picture         =   "OrderForm.frx":EE9B
-      ScaleHeight     =   4635
+      ScaleHeight     =   5835
       ScaleWidth      =   4035
       TabIndex        =   0
-      Top             =   1800
+      Top             =   2400
       Width           =   4095
       Begin VB.Shape Shape1 
          FillColor       =   &H000000C0&
@@ -74,17 +90,44 @@ Begin VB.Form OrderForm
       Style           =   1  'Graphical
       TabIndex        =   6
       ToolTipText     =   "Confirm Order"
-      Top             =   5400
+      Top             =   7200
       Width           =   1215
+   End
+   Begin VB.Label GreetLabel 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Welcome"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H8000000E&
+      Height          =   255
+      Left            =   240
+      TabIndex        =   11
+      Top             =   1320
+      Width           =   6375
+   End
+   Begin VB.Shape Shape3 
+      FillColor       =   &H00800000&
+      FillStyle       =   0  'Solid
+      Height          =   615
+      Left            =   -120
+      Top             =   1200
+      Width           =   9135
    End
    Begin VB.Label MobileIdCaption 
       Caption         =   "id"
       Height          =   375
-      Left            =   6840
+      Left            =   8400
       TabIndex        =   10
-      Top             =   1440
+      Top             =   1920
       Visible         =   0   'False
-      Width           =   1575
+      Width           =   375
    End
    Begin VB.Label MobileModelName 
       BackStyle       =   0  'Transparent
@@ -102,7 +145,7 @@ Begin VB.Form OrderForm
       Height          =   495
       Left            =   4920
       TabIndex        =   8
-      Top             =   2400
+      Top             =   3000
       Width           =   4695
    End
    Begin VB.Label Label1 
@@ -170,7 +213,7 @@ Begin VB.Form OrderForm
       Height          =   495
       Left            =   4920
       TabIndex        =   5
-      Top             =   4080
+      Top             =   4680
       Width           =   1335
    End
    Begin VB.Label MobileColor 
@@ -190,7 +233,7 @@ Begin VB.Form OrderForm
       Height          =   495
       Left            =   6600
       TabIndex        =   4
-      Top             =   4080
+      Top             =   4680
       Width           =   1935
    End
    Begin VB.Label MobileRam 
@@ -210,7 +253,7 @@ Begin VB.Form OrderForm
       Height          =   495
       Left            =   4920
       TabIndex        =   3
-      Top             =   4560
+      Top             =   5160
       Width           =   1575
    End
    Begin VB.Label MobileDescription 
@@ -230,7 +273,7 @@ Begin VB.Form OrderForm
       Height          =   1095
       Left            =   4920
       TabIndex        =   2
-      Top             =   2880
+      Top             =   3480
       Width           =   3735
    End
    Begin VB.Label mobilename 
@@ -250,7 +293,7 @@ Begin VB.Form OrderForm
       Height          =   615
       Left            =   4920
       TabIndex        =   1
-      Top             =   1800
+      Top             =   2400
       Width           =   4575
    End
    Begin VB.Shape Shape2 
@@ -318,7 +361,12 @@ Private Sub HomeImageButton_Click()
     Unload Me
 End Sub
 
+
+Private Sub MobileImageSelect_Click()
+
+End Sub
+
 Private Sub SubmitImageButton_Click()
-    DetailsForm.Load
+    DetailsForm.Show
     Unload Me
 End Sub

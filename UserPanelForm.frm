@@ -11,6 +11,24 @@ Begin VB.Form UserPanelForm
    ScaleHeight     =   7455
    ScaleWidth      =   13635
    StartUpPosition =   3  'Windows Default
+   Begin VB.TextBox UserNameHidden 
+      Height          =   285
+      Left            =   11040
+      TabIndex        =   7
+      Text            =   "Text1"
+      Top             =   6240
+      Visible         =   0   'False
+      Width           =   735
+   End
+   Begin VB.TextBox UserIdHidden 
+      Height          =   285
+      Left            =   9960
+      TabIndex        =   6
+      Text            =   "Text1"
+      Top             =   6240
+      Visible         =   0   'False
+      Width           =   735
+   End
    Begin VB.TextBox SelectMobileId 
       Height          =   285
       Left            =   8280
@@ -146,7 +164,7 @@ Dim records As ADODB.Recordset
 Dim MobileNumbers As Integer
 Dim rec_ary As Variant
 Dim MobileDisplayName As String
-Dim MobileName As String
+Dim mobilename As String
 Dim MobileDescription As String
 Dim MobileRam As String
 Dim MobileColor As String
@@ -185,14 +203,16 @@ End Sub
 
 Private Sub MobileListBox_Click()
     SelectMobileId.Text = rec_ary(0, MobileListBox.ListIndex)
-    'MsgBox (MobileListBox.Text)
-    MobileName = rec_ary(1, MobileListBox.ListIndex)
+    'MsgBox (SelectMobileId.Text)
+    mobilename = rec_ary(1, MobileListBox.ListIndex)
     'MsgBox (MobileName)
     MobilePrice = rec_ary(3, MobileListBox.ListIndex)
     MobileDescription = rec_ary(4, MobileListBox.ListIndex)
     MobileColor = rec_ary(6, MobileListBox.ListIndex)
     MobileRam = rec_ary(14, MobileListBox.ListIndex)
     MobileImage = rec_ary(17, MobileListBox.ListIndex)
+    OrderForm.UserIdHidden.Text = UserIdHidden.Text
+    OrderForm.UserNameHidden.Text = UserNameHidden.Text
     OrderForm.Show
     Unload Me
     'MsgBox (MobileListBox.ListIndex)

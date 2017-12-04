@@ -220,6 +220,7 @@ Dim ADD21 As String
 Dim PIN1 As String
 Dim PHONE As String
 Dim ADDRESS As String
+Dim ContactNo As String
 
 
 Private Sub BackImageButton_Click()
@@ -228,50 +229,45 @@ Private Sub BackImageButton_Click()
 End Sub
 
 Private Sub Command1_Click()
-NAME11.Text = ""
-ADD1.Text = ""
-ADD2.Text = ""
-PIN.Text = ""
-PNO.Text = ""
+    NAME11.Text = ""
+    ADD1.Text = ""
+    ADD2.Text = ""
+    PIN.Text = ""
+    PHNO.Text = ""
 End Sub
 
 Private Sub Command2_Click()
-Dim MSG As Integer
-
-NAME1 = NAME11.Text
-ADD11 = ADD1.Text
-ADD21 = ADD2.Text
-PIN1 = PIN.Text
-PHONE = PHNO.Text
-
-
-ADDRESS = ADD11 + "," + ADD21 + "," + PIN1 + "."
-
-If NAME11.Text = "" Then
-MSG = MsgBox("OOPS!! Name Field Cant be Empty", vbOKOnly)
-
-
-ElseIf ADD1.Text = "" Then
-MSG = MsgBox("OOPS!! Address Field Cant be Empty", vbOKOnly)
-
-
-ElseIf ADD2.Text = "" Then
-    MSG = MsgBox("OOPS!! City Field Cant be Empty", vbOKOnly)
-
-ElseIf PIN.Text = "" Then
-    MSG = MsgBox("OOPS!! Pincode Field Cant be Empty", vbOKOnly)
-       
-Else
-
-
+    Dim MSG As Integer
     
-DetailsForm.Hide
-BillingForm.Show
-BillingForm.Label14.Caption = PHONE
-BillingForm.Label12.Caption = NAME1
-BillingForm.Label13.Caption = ADDRESS
-End If
-
+    NAME1 = NAME11.Text
+    ADD11 = ADD1.Text
+    ADD21 = ADD2.Text
+    PIN1 = PIN.Text
+    PHONE = PHNO.Text
+    
+    
+    ADDRESS = ADD11 + "," + ADD21 + "," + PIN1 + "."
+    
+    If NAME11.Text = "" Then
+        MSG = MsgBox("OOPS!! Name Field Cant be Empty", vbOKOnly)
+    ElseIf ADD1.Text = "" Then
+        MSG = MsgBox("OOPS!! Address Field Cant be Empty", vbOKOnly)
+    ElseIf ADD2.Text = "" Then
+        MSG = MsgBox("OOPS!! City Field Cant be Empty", vbOKOnly)
+    ElseIf PIN.Text = "" Then
+        MSG = MsgBox("OOPS!! Pincode Field Cant be Empty", vbOKOnly)
+    End If
+    If Len(ContactNo) = 10 Then
+        DetailsForm.Hide
+        BillingForm.Show
+        BillingForm.Label14.Caption = PHONE
+        BillingForm.Label12.Caption = NAME1
+        BillingForm.Label13.Caption = ADDRESS
+    Else
+        MsgBox "contact number has to be 10 digits"
+    End If
+    OrderForm.MobileName = BillingForm.BillingMobileName
+    OrderForm.MobilePrice = BillingForm.BillingMobilePrice
 End Sub
 
 Private Sub Command3_Click()
@@ -292,4 +288,8 @@ End Sub
 
 Private Sub Form_Load()
     MobileIdCaption.Caption = OrderForm.MobileIdCaption
+End Sub
+
+Private Sub PHNO_Change()
+    ContactNo = PHNO.Text
 End Sub

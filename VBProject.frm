@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form WelcomeForm 
    Appearance      =   0  'Flat
-   BackColor       =   &H80000005&
+   BackColor       =   &H00FFFFC0&
    Caption         =   "Login to m-Shopping"
    ClientHeight    =   7425
    ClientLeft      =   225
@@ -227,11 +227,13 @@ Private Sub LoginButton_Click()
         rec_ary = records.GetRows(1)
         If rec_ary(0, 0) = 1 Then
             Set records = New ADODB.Recordset
-            records.Open "Select user_type from [users] where username = '" + username + "' and password = '" + password & "';", db, adOpenStatic, adLockOptimistic
+            records.Open "Select user_type, id from [users] where username = '" + username + "' and password = '" + password & "';", db, adOpenStatic, adLockOptimistic
             rec_ary = records.GetRows(1)
             If rec_ary(0, 0) = "admin" Then
                 AdminPanelForm.Show
             Else
+                UserPanelForm.UserIdHidden.Text = rec_ary(1, 0)
+                UserPanelForm.UserNameHidden.Text = username
                 UserPanelForm.Show
             End If
             Unload Me
