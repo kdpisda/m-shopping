@@ -3,21 +3,21 @@ Begin VB.Form BillingForm
    BackColor       =   &H00FFFFFF&
    Caption         =   "Billing"
    ClientHeight    =   8910
-   ClientLeft      =   120
-   ClientTop       =   465
-   ClientWidth     =   12165
+   ClientLeft      =   225
+   ClientTop       =   570
+   ClientWidth     =   11280
    FillColor       =   &H00FFFFFF&
    ForeColor       =   &H8000000E&
    LinkTopic       =   "Form2"
    Picture         =   "BillingForm.frx":0000
    ScaleHeight     =   8910
-   ScaleWidth      =   12165
+   ScaleWidth      =   11280
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton Command3 
       BackColor       =   &H00404040&
-      Caption         =   "ORDER"
+      Caption         =   "Confirm"
       BeginProperty Font 
-         Name            =   "Comic Sans MS"
+         Name            =   "Microsoft Sans Serif"
          Size            =   18
          Charset         =   0
          Weight          =   700
@@ -35,9 +35,9 @@ Begin VB.Form BillingForm
    End
    Begin VB.CommandButton Command1 
       BackColor       =   &H00404040&
-      Caption         =   "PREVIOUS"
+      Caption         =   "Previous"
       BeginProperty Font 
-         Name            =   "Comic Sans MS"
+         Name            =   "Microsoft Sans Serif"
          Size            =   18
          Charset         =   0
          Weight          =   700
@@ -53,7 +53,27 @@ Begin VB.Form BillingForm
       Top             =   8160
       Width           =   2175
    End
+   Begin VB.Label QuantityLabel 
+      BackStyle       =   0  'Transparent
+      Caption         =   "TOTAL"
+      BeginProperty Font 
+         Name            =   "Microsoft Sans Serif"
+         Size            =   14.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00000000&
+      Height          =   375
+      Left            =   6240
+      TabIndex        =   9
+      Top             =   4440
+      Width           =   1575
+   End
    Begin VB.Label Label5 
+      Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
       Caption         =   "YOUR ORDER"
       BeginProperty Font 
@@ -67,14 +87,14 @@ Begin VB.Form BillingForm
       EndProperty
       ForeColor       =   &H00000000&
       Height          =   375
-      Left            =   1560
-      TabIndex        =   11
-      Top             =   3600
-      Width           =   2775
+      Left            =   1920
+      TabIndex        =   8
+      Top             =   2880
+      Width           =   7455
    End
    Begin VB.Label Label4 
       BackStyle       =   0  'Transparent
-      Caption         =   "DELIEVER TO"
+      Caption         =   "Shipping Address"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -85,47 +105,28 @@ Begin VB.Form BillingForm
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00000000&
-      Height          =   375
-      Left            =   1560
-      TabIndex        =   10
+      Height          =   495
+      Left            =   2400
+      TabIndex        =   7
       Top             =   5520
-      Width           =   2775
-   End
-   Begin VB.Label BillingMobilePrice 
-      BackStyle       =   0  'Transparent
-      Caption         =   "RS"
-      BeginProperty Font 
-         Name            =   "Comic Sans MS"
-         Size            =   14.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00FFFFFF&
-      Height          =   375
-      Left            =   6840
-      TabIndex        =   9
-      Top             =   4800
-      Width           =   855
+      Width           =   3135
    End
    Begin VB.Label Label14 
       BackStyle       =   0  'Transparent
       Caption         =   "CONTACT "
       BeginProperty Font 
-         Name            =   "Comic Sans MS"
+         Name            =   "Microsoft Sans Serif"
          Size            =   14.25
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00FFFFFF&
+      ForeColor       =   &H00000000&
       Height          =   495
       Left            =   2400
-      TabIndex        =   8
+      TabIndex        =   6
       Top             =   6480
       Width           =   3015
    End
@@ -133,18 +134,18 @@ Begin VB.Form BillingForm
       BackStyle       =   0  'Transparent
       Caption         =   "NAME"
       BeginProperty Font 
-         Name            =   "Comic Sans MS"
+         Name            =   "Microsoft Sans Serif"
          Size            =   14.25
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00FFFFFF&
+      ForeColor       =   &H00000000&
       Height          =   375
       Left            =   2400
-      TabIndex        =   7
+      TabIndex        =   5
       Top             =   6000
       Width           =   3255
    End
@@ -152,27 +153,27 @@ Begin VB.Form BillingForm
       BackStyle       =   0  'Transparent
       Caption         =   "ADDRESS"
       BeginProperty Font 
-         Name            =   "Comic Sans MS"
+         Name            =   "Microsoft Sans Serif"
          Size            =   14.25
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00FFFFFF&
+      ForeColor       =   &H00000000&
       Height          =   375
       Left            =   2400
-      TabIndex        =   6
+      TabIndex        =   4
       Top             =   6960
       Width           =   10335
    End
-   Begin VB.Label Label11 
+   Begin VB.Label PriceLabel 
       BackStyle       =   0  'Transparent
       Caption         =   "TOTAL"
       BeginProperty Font 
          Name            =   "Microsoft Sans Serif"
-         Size            =   18
+         Size            =   14.25
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
@@ -181,36 +182,17 @@ Begin VB.Form BillingForm
       EndProperty
       ForeColor       =   &H00000000&
       Height          =   375
-      Left            =   1560
-      TabIndex        =   5
-      Top             =   4800
-      Width           =   3255
+      Left            =   2520
+      TabIndex        =   3
+      Top             =   4560
+      Width           =   1575
    End
-   Begin VB.Label BillingMobileName 
-      BackStyle       =   0  'Transparent
-      Caption         =   "NAME"
-      BeginProperty Font 
-         Name            =   "Comic Sans MS"
-         Size            =   14.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00FFFFFF&
-      Height          =   375
-      Left            =   6840
-      TabIndex        =   4
-      Top             =   3960
-      Width           =   3255
-   End
-   Begin VB.Label labelx 
+   Begin VB.Label MobileNameLabel 
       BackStyle       =   0  'Transparent
       Caption         =   "MOBILE"
       BeginProperty Font 
          Name            =   "Microsoft Sans Serif"
-         Size            =   18
+         Size            =   14.25
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
@@ -219,29 +201,20 @@ Begin VB.Form BillingForm
       EndProperty
       ForeColor       =   &H00000000&
       Height          =   375
-      Left            =   1560
-      TabIndex        =   3
-      Top             =   4200
-      Width           =   3255
-   End
-   Begin VB.Label Label2 
-      BackStyle       =   0  'Transparent
-      Caption         =   "PRICE"
-      BeginProperty Font 
-         Name            =   "Comic Sans MS"
-         Size            =   14.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00FFFFFF&
-      Height          =   375
-      Left            =   7320
+      Left            =   2520
       TabIndex        =   2
-      Top             =   4800
-      Width           =   2295
+      Top             =   3720
+      Width           =   6255
+   End
+   Begin VB.Shape Shape1 
+      BorderStyle     =   0  'Transparent
+      FillColor       =   &H00C0FFFF&
+      FillStyle       =   0  'Solid
+      Height          =   5535
+      Left            =   1560
+      Shape           =   4  'Rounded Rectangle
+      Top             =   2280
+      Width           =   8055
    End
 End
 Attribute VB_Name = "BillingForm"

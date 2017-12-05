@@ -1,12 +1,13 @@
 VERSION 5.00
 Begin VB.Form OrderForm 
-   BackColor       =   &H00008080&
+   BackColor       =   &H00FFFFFF&
    Caption         =   "Order"
    ClientHeight    =   8670
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   8895
-   FillColor       =   &H0000C0C0&
+   FillColor       =   &H00FFFFFF&
+   FillStyle       =   0  'Solid
    ForeColor       =   &H8000000D&
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
@@ -72,9 +73,9 @@ Begin VB.Form OrderForm
       Height          =   1095
       Left            =   5160
       MaskColor       =   &H000080FF&
-      MouseIcon       =   "OrderForm.frx":D947
+      MouseIcon       =   "OrderForm.frx":109C
       MousePointer    =   99  'Custom
-      Picture         =   "OrderForm.frx":DA99
+      Picture         =   "OrderForm.frx":11EE
       Style           =   1  'Graphical
       TabIndex        =   8
       ToolTipText     =   "Cancel"
@@ -95,9 +96,9 @@ Begin VB.Form OrderForm
       Height          =   1095
       Left            =   6840
       MaskColor       =   &H000080FF&
-      MouseIcon       =   "OrderForm.frx":EE9B
+      MouseIcon       =   "OrderForm.frx":25F0
       MousePointer    =   99  'Custom
-      Picture         =   "OrderForm.frx":EFED
+      Picture         =   "OrderForm.frx":2742
       Style           =   1  'Graphical
       TabIndex        =   5
       ToolTipText     =   "Confirm Order"
@@ -107,7 +108,7 @@ Begin VB.Form OrderForm
    Begin VB.Image MobileImageSelect 
       Height          =   5775
       Left            =   840
-      Picture         =   "OrderForm.frx":103EF
+      Picture         =   "OrderForm.frx":3B44
       Stretch         =   -1  'True
       Top             =   2520
       Width           =   3495
@@ -124,7 +125,6 @@ Begin VB.Form OrderForm
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H8000000E&
       Height          =   495
       Left            =   4920
       TabIndex        =   13
@@ -170,7 +170,6 @@ Begin VB.Form OrderForm
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H8000000E&
       Height          =   495
       Left            =   4920
       TabIndex        =   7
@@ -198,9 +197,9 @@ Begin VB.Form OrderForm
    Begin VB.Image Image2 
       Height          =   945
       Left            =   7920
-      MouseIcon       =   "OrderForm.frx":2D841
+      MouseIcon       =   "OrderForm.frx":20F96
       MousePointer    =   99  'Custom
-      Picture         =   "OrderForm.frx":2D993
+      Picture         =   "OrderForm.frx":210E8
       ToolTipText     =   "Logout"
       Top             =   120
       Width           =   945
@@ -208,9 +207,9 @@ Begin VB.Form OrderForm
    Begin VB.Image HomeImageButton 
       Height          =   1020
       Left            =   6840
-      MouseIcon       =   "OrderForm.frx":2ED95
+      MouseIcon       =   "OrderForm.frx":224EA
       MousePointer    =   99  'Custom
-      Picture         =   "OrderForm.frx":2EEE7
+      Picture         =   "OrderForm.frx":2263C
       ToolTipText     =   "Home"
       Top             =   120
       Width           =   1005
@@ -218,9 +217,9 @@ Begin VB.Form OrderForm
    Begin VB.Image BackImageButton 
       Height          =   945
       Left            =   120
-      MouseIcon       =   "OrderForm.frx":30539
+      MouseIcon       =   "OrderForm.frx":23C8E
       MousePointer    =   99  'Custom
-      Picture         =   "OrderForm.frx":3068B
+      Picture         =   "OrderForm.frx":23DE0
       ToolTipText     =   "Back"
       Top             =   120
       Width           =   945
@@ -238,7 +237,6 @@ Begin VB.Form OrderForm
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H8000000E&
       Height          =   495
       Left            =   4920
       TabIndex        =   4
@@ -258,7 +256,6 @@ Begin VB.Form OrderForm
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H8000000E&
       Height          =   495
       Left            =   6600
       TabIndex        =   3
@@ -278,7 +275,6 @@ Begin VB.Form OrderForm
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H8000000E&
       Height          =   495
       Left            =   4920
       TabIndex        =   2
@@ -298,7 +294,6 @@ Begin VB.Form OrderForm
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H8000000E&
       Height          =   1095
       Left            =   4920
       TabIndex        =   1
@@ -318,7 +313,6 @@ Begin VB.Form OrderForm
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H8000000E&
       Height          =   615
       Left            =   4920
       TabIndex        =   0
@@ -378,7 +372,7 @@ Private Sub Form_Load()
     SelectedMobileColor = rec_ary(6, 0)
     SelectedMobileRam = rec_ary(14, 0)
     SelectedMobileImage = rec_ary(17, 0)
-    mobilename.Caption = SelectedMobileName
+    MobileName.Caption = SelectedMobileName
     MobilePrice.Caption = SelectedMobilePrice
     MobileDescription.Caption = SelectedMobileDescription
     MobileColor.Caption = SelectedMobileColor
@@ -397,7 +391,7 @@ End Sub
 Private Sub SubmitImageButton_Click()
     If MobileQuantity.Text > 0 And MobileQuantity.Text < 21 Then
         DetailsForm.Show
-        DetailsForm.SelectedMobileNameLabel.Caption = mobilename.Caption
+        DetailsForm.SelectedMobileNameLabel.Caption = MobileName.Caption
         DetailsForm.SelectedMobilePriceLabel.Caption = (MobilePrice.Caption * MobileQuantity.Text) & " Rs"
         If MobileQuantity.Text = 1 Then
             DetailsForm.QuantityLabel.Caption = MobileQuantity.Text & " Pc"

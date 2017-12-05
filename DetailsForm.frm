@@ -508,6 +508,9 @@ Private Sub Command2_Click()
         BillingForm.Label14.Caption = PHONE
         BillingForm.Label12.Caption = NAME1
         BillingForm.Label13.Caption = ADDRESS
+        BillingForm.MobileNameLabel.Caption = SelectedMobileNameLabel.Caption
+        BillingForm.QuantityLabel.Caption = QuantityLabel.Caption
+        BillingForm.PriceLabel.Caption = SelectedMobilePriceLabel.Caption
     Else
         MsgBox "contact number has to be 10 digits"
     End If

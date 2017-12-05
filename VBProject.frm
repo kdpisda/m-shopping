@@ -259,8 +259,13 @@ Private Sub PasswordTextBox_Change()
     End If
 End Sub
 
+Private Sub RegisterButton_Click()
+    RegistrationForm.Show
+    Unload Me
+End Sub
+
 Private Sub UsernameTextBox_Change()
-    username = UsernameTextBox.Text
+    username = UserNameTextBox.Text
     If username = "" Then
         LoginButton.Enabled = False
     Else
