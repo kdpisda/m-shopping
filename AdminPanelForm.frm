@@ -174,8 +174,8 @@ Begin VB.Form AdminPanelForm
       ForeColor       =   -2147483640
       Orientation     =   0
       Enabled         =   -1
-      Connect         =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\kdpisda\Documents\VB\mshopping.mdb;Persist Security Info=False"
-      OLEDBString     =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\kdpisda\Documents\VB\mshopping.mdb;Persist Security Info=False"
+      Connect         =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=mshopping.mdb;Persist Security Info=False"
+      OLEDBString     =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=mshopping.mdb;Persist Security Info=False"
       OLEDBFile       =   ""
       DataSourceName  =   ""
       OtherAttributes =   ""
@@ -221,8 +221,8 @@ Begin VB.Form AdminPanelForm
       ForeColor       =   -2147483640
       Orientation     =   0
       Enabled         =   -1
-      Connect         =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\kdpisda\Documents\VB\mshopping.mdb;Persist Security Info=False"
-      OLEDBString     =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\kdpisda\Documents\VB\mshopping.mdb;Persist Security Info=False"
+      Connect         =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=mshopping.mdb;Persist Security Info=False"
+      OLEDBString     =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=mshopping.mdb;Persist Security Info=False"
       OLEDBFile       =   ""
       DataSourceName  =   ""
       OtherAttributes =   ""
@@ -402,8 +402,8 @@ Begin VB.Form AdminPanelForm
       ForeColor       =   -2147483640
       Orientation     =   0
       Enabled         =   -1
-      Connect         =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\kdpisda\Documents\VB\mshopping.mdb;Persist Security Info=False"
-      OLEDBString     =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\kdpisda\Documents\VB\mshopping.mdb;Persist Security Info=False"
+      Connect         =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=mshopping.mdb;Persist Security Info=False"
+      OLEDBString     =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=mshopping.mdb;Persist Security Info=False"
       OLEDBFile       =   ""
       DataSourceName  =   ""
       OtherAttributes =   ""
