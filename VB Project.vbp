@@ -18,6 +18,7 @@ Object={67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0; MSADODC.OCX
 Reference=*\G{56BF9020-7A2F-11D0-9482-00A0C91110ED}#1.0#0#..\..\..\..\Windows\SysWow64\MSBIND.DLL#Microsoft Data Binding Collection
 Form=MobileShowForm.frm
 Object={3050F1C5-98B5-11CF-BB82-00AA00BDCE0B}#4.0#0; mshtml.tlb
+Form=RegistrationForm.frm
 IconForm="WelcomeForm"
 Startup="WelcomeSplash"
 HelpFile=""

@@ -222,9 +222,9 @@ Dim InputName As String
 Dim InputPassword As String
 Dim ContactNo As String
 Dim UserType As String
-Dim records As ADODB.Recordset
 Dim rec_ary As Variant
-Dim db As ADODB.Connection
+Dim rs As ADODB.Recordset
+Dim cn As ADODB.Connection
 
 Private Sub Form_Load()
     Set db = New ADODB.Connection
@@ -232,7 +232,7 @@ Private Sub Form_Load()
     Set records = New ADODB.Recordset
     records.Open "Select count(*) from [users];", db, adOpenStatic, adLockOptimistic
     rec_ary = records.GetRows(1)
-    id = rec_ary(0, 0)
+    id = rec_ary(0, 0) + 1
     UserType = "Guest"
 End Sub
 
@@ -254,25 +254,24 @@ Private Sub PasswordBox_Change()
 End Sub
 
 Private Sub SubmitButton_Click()
+    
+    db_path = App.Path + "\mshopping.mdb"
+    Set cn = New ADODB.Connection
+        cn.Open "PROVIDER=Microsoft.Jet.OLEDB.4.0; Data Source=" & db_path
+    Set rs = New ADODB.Recordset
+        rs.Open "Select * from users", cn, adOpenStatic, adLockOptimistic
+        
+    With rs
+        .AddNew
+        .Fields("id").Value = id
+        .Fields("username").Value = UserName
+        .Fields("name").Value = InputName
+        .Fields("password").Value = InputPassword
+        .Fields("contact_no").Value = ContactNo
+        .Fields("user_type").Value = UserType
+        .Update
+    End With
     'On Error GoTo ErrHandle
-    Dim sql_query As String
-    Set db = New ADODB.Connection
-    db.Open "PROVIDER=Microsoft.Jet.OLEDB.4.0; Data Source=" & App.Path + "\mshopping.mdb"
-    sql_query = "INSERT INTO users " & _
-        "(id, username, name, password, contact_no, user_type) " & _
-        " VALUES (" & _
-        "" & id & ", " & _
-        "'" & UserName & "', " & _
-        "'" & InputName & "', " & _
-        "'" & InputPassword & "', " & _
-        "'" & ContactNo & "'," & _
-        "'" & UserType & "'" & _
-        ");"
-    MsgBox (sql_query)
-    db.Execute sql_query
-    db.Close
-    Stop
-    Exit Sub
 'ErrHandle:
     'MsgBox "Happily chugging away in the error handler"
     'Set records = New ADODB.Recordset

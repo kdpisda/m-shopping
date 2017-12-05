@@ -265,7 +265,7 @@ Private Sub RegisterButton_Click()
 End Sub
 
 Private Sub UsernameTextBox_Change()
-    username = UserNameTextBox.Text
+    username = UsernameTextBox.Text
     If username = "" Then
         LoginButton.Enabled = False
     Else

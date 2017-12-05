@@ -13,6 +13,22 @@ Begin VB.Form BillingForm
    ScaleHeight     =   8910
    ScaleWidth      =   11280
    StartUpPosition =   3  'Windows Default
+   Begin VB.TextBox UserIdHidden 
+      Height          =   285
+      Left            =   8520
+      TabIndex        =   11
+      Text            =   "Text2"
+      Top             =   1200
+      Width           =   1215
+   End
+   Begin VB.TextBox SelectedMobileIdHidden 
+      Height          =   285
+      Left            =   8520
+      TabIndex        =   10
+      Text            =   "Text1"
+      Top             =   720
+      Width           =   1215
+   End
    Begin VB.CommandButton Command3 
       BackColor       =   &H00404040&
       Caption         =   "Confirm"
@@ -222,28 +238,70 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Dim OrderId As Integer
+Dim MobileId As Integer
+Dim UserId As Integer
+Dim Quantity As Integer
+Dim Price As Integer
+Dim Attendee As String
+Dim Address As String
+Dim ContactNo As String
+Dim rs As ADODB.Recordset
+Dim cn As ADODB.Connection
+
 Private Sub Command1_Click()
 BillingForm.Hide
 DetailsForm.Show
 End Sub
 
 Private Sub Command2_Click()
-Dim P As Integer
-P = MsgBox("THANKYOU FOR ORDERING, HAVE A NICE DAY", vbOKOnly)
-If P = vbOK Then
-    Unload Me
-End If
-
-
+    Dim P As Integer
+    db_path = App.Path + "\mshopping.mdb"
+    Set cn = New ADODB.Connection
+        cn.Open "PROVIDER=Microsoft.Jet.OLEDB.4.0; Data Source=" & db_path
+    Set rs = New ADODB.Recordset
+        rs.Open "Select * from orders", cn, adOpenStatic, adLockOptimistic
+        
+    With rs
+        .AddNew
+        .Fields("id").Value = OrderId
+        .Fields("mobile_id").Value = MobileId
+        .Fields("user_id").Value = UserId
+        .Fields("attendee").Value = Attendee
+        .Fields("address").Value = Address
+        .Fields("contact_no").Value = ContactNo
+        .Fields("quantity").Value = Quantity
+        .Fields("price").Value = Price
+        .Update
+    End With
+    P = MsgBox("THANKYOU FOR ORDERING, HAVE A NICE DAY", vbOKOnly)
+    If P = vbOK Then
+        Unload Me
+    End If
+    
 End Sub
 
 Private Sub Command3_Click()
-Dim P As Integer
-P = MsgBox("THANKYOU FOR ORDERING, HAVE A NICE DAY", vbOKOnly)
-If P = vbOK Then
-    UserPanelForm.Show
-    Unload Me
-End If
-
+    Dim P As Integer
+    P = MsgBox("THANKYOU FOR ORDERING, HAVE A NICE DAY", vbOKOnly)
+    If P = vbOK Then
+        UserPanelForm.Show
+        Unload Me
+    End If
 End Sub
 
+Private Sub Form_Load()
+    Set db = New ADODB.Connection
+    db.Open "PROVIDER=Microsoft.Jet.OLEDB.4.0; Data Source=" & App.Path + "\mshopping.mdb"
+    Set records = New ADODB.Recordset
+    records.Open "Select count(*) from [orders];", db, adOpenStatic, adLockOptimistic
+    rec_ary = records.GetRows(1)
+    OrderId = rec_ary(0, 0) + 1
+    MobileId = Val(SelectedMobileIdHidden.Text)
+    UserId = Val(UserIdHidden.Text)
+    Quantity = Val(QuantityLabel.Caption)
+    Price = Val(PriceLabel.Caption)
+    ContactNo = Label14.Caption
+    Address = Label13.Caption
+    Attendee = Label12.Caption
+End Sub

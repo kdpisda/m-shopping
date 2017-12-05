@@ -159,13 +159,13 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Dim username As String
+Dim UserName As String
 Dim db As ADODB.Connection
 Dim records As ADODB.Recordset
 Dim MobileNumbers As Integer
 Dim rec_ary As Variant
 Dim MobileDisplayName As String
-Dim mobilename As String
+Dim MobileName As String
 Dim MobileDescription As String
 Dim MobileRam As String
 Dim MobileColor As String
@@ -174,7 +174,7 @@ Dim MobileImage As String
 
 
 Private Sub Form_Load()
-    username = WelcomeForm.UsernameTextBox
+    UserName = WelcomeForm.UserNameTextBox
     UserNameLabel.Caption = "Welcome, " + UserNameHidden.Text
     LoadingSplash.Show
     If LoadingSplash.Visible Then
@@ -196,8 +196,8 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub LogoutButton_Click()
-    WelcomeForm.UsernameTextBox = ""
-    username = ""
+    WelcomeForm.UserNameTextBox = ""
+    UserName = ""
     WelcomeForm.Show
     Unload Me
 End Sub
@@ -205,7 +205,7 @@ End Sub
 Private Sub MobileListBox_Click()
     SelectMobileId.Text = rec_ary(0, MobileListBox.ListIndex)
     'MsgBox (SelectMobileId.Text)
-    mobilename = rec_ary(1, MobileListBox.ListIndex)
+    MobileName = rec_ary(1, MobileListBox.ListIndex)
     'MsgBox (MobileName)
     MobilePrice = rec_ary(3, MobileListBox.ListIndex)
     MobileDescription = rec_ary(4, MobileListBox.ListIndex)

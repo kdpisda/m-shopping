@@ -505,6 +505,8 @@ Private Sub Command2_Click()
     If Len(ContactNo) = 10 Then
         DetailsForm.Hide
         BillingForm.Show
+        BillingForm.SelectedMobileIdHidden.Text = SelectedMobileIdHidden.Text
+        BillingForm.UserIdHidden.Text = UserIdHidden.Text
         BillingForm.Label14.Caption = PHONE
         BillingForm.Label12.Caption = NAME1
         BillingForm.Label13.Caption = ADDRESS
